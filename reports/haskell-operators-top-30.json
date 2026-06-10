@@ -1,0 +1,1959 @@
+{
+  "meta": {
+    "date": "2026-06-10",
+    "requested": [
+      "git-annex",
+      "pandoc",
+      "texmath",
+      "hakyll",
+      "sbv",
+      "yesod-core",
+      "tidal",
+      "ghc-lib",
+      "hlint",
+      "wai-extra",
+      "persistent",
+      "vulkan",
+      "persistent-sqlite",
+      "futhark",
+      "hspec",
+      "haskoin-store",
+      "shelly",
+      "egison",
+      "yesod-auth",
+      "warp",
+      "purescript",
+      "brick",
+      "hledger",
+      "rattletrap",
+      "lens",
+      "http-conduit",
+      "yesod-bin",
+      "tls",
+      "yesod",
+      "shake"
+    ],
+    "failed": [],
+    "docPackages": [
+      "ghc-internal",
+      "base",
+      "ghc-prim",
+      "containers",
+      "bytestring",
+      "text",
+      "filepath",
+      "transformers",
+      "mtl",
+      "pretty",
+      "aeson",
+      "lens",
+      "vector"
+    ],
+    "includeTests": false,
+    "maxFileBytes": 2000000
+  },
+  "totals": {
+    "files": 4134,
+    "bytes": 62521357,
+    "packages": 30,
+    "distinctOperators": 432,
+    "distinctBackticks": 958
+  },
+  "stats": {
+    "skippedTestDirs": 38,
+    "skippedLiterate": 12,
+    "skippedLarge": 0,
+    "duplicates": 10
+  },
+  "operators": [
+    {
+      "name": "$",
+      "count": 88913,
+      "pkgs": 29,
+      "byPkg": {
+        "git-annex": 12672,
+        "pandoc": 9326,
+        "texmath": 560,
+        "hakyll": 613,
+        "sbv": 6562,
+        "yesod-core": 562,
+        "tidal": 126,
+        "ghc-lib": 13492,
+        "hlint": 763,
+        "wai-extra": 326,
+        "persistent": 935,
+        "vulkan": 11445,
+        "persistent-sqlite": 163,
+        "futhark": 17874,
+        "haskoin-store": 810,
+        "shelly": 333,
+        "egison": 1229,
+        "yesod-auth": 210,
+        "warp": 170,
+        "purescript": 2956,
+        "brick": 1107,
+        "hledger": 1098,
+        "rattletrap": 1038,
+        "lens": 546,
+        "http-conduit": 36,
+        "yesod-bin": 106,
+        "tls": 1633,
+        "yesod": 70,
+        "shake": 2152
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 0,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "($) :: forall repa repb (a :: TYPE repa) (b :: TYPE repb). (a -> b) -> a -> b",
+        "text": "`($)` is the function application operator.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": ".",
+      "count": 23549,
+      "pkgs": 29,
+      "byPkg": {
+        "git-annex": 2582,
+        "pandoc": 2721,
+        "texmath": 156,
+        "hakyll": 198,
+        "sbv": 1082,
+        "yesod-core": 255,
+        "tidal": 43,
+        "ghc-lib": 1949,
+        "hlint": 261,
+        "wai-extra": 101,
+        "persistent": 575,
+        "vulkan": 2679,
+        "persistent-sqlite": 84,
+        "futhark": 4807,
+        "haskoin-store": 1546,
+        "shelly": 178,
+        "egison": 237,
+        "yesod-auth": 19,
+        "warp": 49,
+        "purescript": 2053,
+        "brick": 230,
+        "hledger": 356,
+        "rattletrap": 276,
+        "lens": 574,
+        "http-conduit": 20,
+        "yesod-bin": 37,
+        "tls": 136,
+        "yesod": 4,
+        "shake": 341
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 9,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(.) :: (b -> c) -> (a -> b) -> a -> c",
+        "text": "Right to left function composition.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": "<>",
+      "count": 17018,
+      "pkgs": 28,
+      "byPkg": {
+        "git-annex": 1004,
+        "pandoc": 4804,
+        "texmath": 309,
+        "hakyll": 69,
+        "sbv": 1379,
+        "yesod-core": 12,
+        "ghc-lib": 2127,
+        "hlint": 83,
+        "wai-extra": 46,
+        "persistent": 128,
+        "vulkan": 6,
+        "persistent-sqlite": 12,
+        "futhark": 4001,
+        "haskoin-store": 428,
+        "shelly": 45,
+        "egison": 206,
+        "yesod-auth": 3,
+        "warp": 8,
+        "purescript": 1407,
+        "brick": 254,
+        "hledger": 241,
+        "rattletrap": 216,
+        "lens": 65,
+        "http-conduit": 1,
+        "yesod-bin": 64,
+        "tls": 40,
+        "yesod": 1,
+        "shake": 59
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 6,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": true,
+      "doc": {
+        "sig": "(<>) :: a -> a -> a",
+        "text": "An associative operation.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": "++",
+      "count": 14079,
+      "pkgs": 28,
+      "byPkg": {
+        "git-annex": 2078,
+        "pandoc": 795,
+        "texmath": 108,
+        "hakyll": 229,
+        "sbv": 4491,
+        "yesod-core": 56,
+        "tidal": 19,
+        "ghc-lib": 1736,
+        "hlint": 405,
+        "wai-extra": 8,
+        "persistent": 120,
+        "vulkan": 3,
+        "persistent-sqlite": 8,
+        "futhark": 1444,
+        "haskoin-store": 2,
+        "shelly": 32,
+        "egison": 943,
+        "yesod-auth": 5,
+        "warp": 13,
+        "purescript": 356,
+        "brick": 16,
+        "hledger": 211,
+        "lens": 32,
+        "http-conduit": 1,
+        "yesod-bin": 48,
+        "tls": 220,
+        "yesod": 22,
+        "shake": 678
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 5,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(++) :: [a] -> [a] -> [a]",
+        "text": "`(++)` appends two lists.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": "<$>",
+      "count": 11250,
+      "pkgs": 29,
+      "byPkg": {
+        "git-annex": 2113,
+        "pandoc": 2482,
+        "texmath": 178,
+        "hakyll": 131,
+        "sbv": 485,
+        "yesod-core": 38,
+        "tidal": 6,
+        "ghc-lib": 1184,
+        "hlint": 85,
+        "wai-extra": 15,
+        "persistent": 89,
+        "vulkan": 27,
+        "persistent-sqlite": 9,
+        "futhark": 2103,
+        "haskoin-store": 183,
+        "shelly": 8,
+        "egison": 334,
+        "yesod-auth": 25,
+        "warp": 20,
+        "purescript": 942,
+        "brick": 125,
+        "hledger": 38,
+        "rattletrap": 2,
+        "lens": 241,
+        "http-conduit": 2,
+        "yesod-bin": 11,
+        "tls": 249,
+        "yesod": 1,
+        "shake": 124
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(<$>) :: Functor f => (a -> b) -> f a -> f b",
+        "text": "An infix synonym for fmap.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Data.Functor"
+      }
+    },
+    {
+      "name": ":",
+      "count": 10987,
+      "pkgs": 29,
+      "byPkg": {
+        "git-annex": 1565,
+        "pandoc": 2600,
+        "texmath": 197,
+        "hakyll": 100,
+        "sbv": 952,
+        "yesod-core": 118,
+        "tidal": 49,
+        "ghc-lib": 2268,
+        "hlint": 169,
+        "wai-extra": 60,
+        "persistent": 87,
+        "vulkan": 7,
+        "persistent-sqlite": 7,
+        "futhark": 1070,
+        "haskoin-store": 11,
+        "shelly": 13,
+        "egison": 402,
+        "yesod-auth": 10,
+        "warp": 33,
+        "purescript": 469,
+        "brick": 56,
+        "hledger": 179,
+        "rattletrap": 8,
+        "lens": 91,
+        "http-conduit": 3,
+        "yesod-bin": 40,
+        "tls": 124,
+        "yesod": 12,
+        "shake": 287
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 5,
+        "pkg": "ghc-prim"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(:) :: a -> [a] -> [a]",
+        "text": "The list constructor: prepends an element to a list (cons).",
+        "pkg": "ghc-prim",
+        "module": "GHC.Types"
+      }
+    },
+    {
+      "name": "==",
+      "count": 7521,
+      "pkgs": 29,
+      "byPkg": {
+        "git-annex": 1105,
+        "pandoc": 1475,
+        "texmath": 119,
+        "hakyll": 32,
+        "sbv": 633,
+        "yesod-core": 50,
+        "tidal": 7,
+        "ghc-lib": 1376,
+        "hlint": 147,
+        "wai-extra": 58,
+        "persistent": 49,
+        "vulkan": 149,
+        "persistent-sqlite": 2,
+        "futhark": 873,
+        "haskoin-store": 46,
+        "shelly": 5,
+        "egison": 170,
+        "yesod-auth": 12,
+        "warp": 80,
+        "purescript": 473,
+        "brick": 90,
+        "hledger": 149,
+        "rattletrap": 17,
+        "lens": 43,
+        "http-conduit": 2,
+        "yesod-bin": 11,
+        "tls": 128,
+        "yesod": 1,
+        "shake": 219
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(==), (/=) :: a -> a -> Bool",
+        "text": "(method of class Eq) The Eq class defines equality (`==`) and inequality (`/=`).",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Classes"
+      }
+    },
+    {
+      "name": "<+>",
+      "count": 4310,
+      "pkgs": 8,
+      "byPkg": {
+        "pandoc": 30,
+        "sbv": 213,
+        "ghc-lib": 2698,
+        "hlint": 2,
+        "futhark": 921,
+        "egison": 340,
+        "purescript": 43,
+        "brick": 63
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 6,
+        "pkg": "futhark"
+      },
+      "fixityVaries": true,
+      "doc": {
+        "sig": "(<+>) :: Fmt -> Fmt -> Fmt",
+        "text": "Concatenate with a space between.",
+        "pkg": "futhark",
+        "module": "Futhark.Fmt.Monad"
+      }
+    },
+    {
+      "name": "+",
+      "count": 3802,
+      "pkgs": 25,
+      "byPkg": {
+        "git-annex": 125,
+        "pandoc": 343,
+        "texmath": 3,
+        "hakyll": 13,
+        "sbv": 1539,
+        "yesod-core": 8,
+        "tidal": 30,
+        "ghc-lib": 613,
+        "hlint": 11,
+        "wai-extra": 11,
+        "persistent": 8,
+        "vulkan": 2,
+        "futhark": 555,
+        "haskoin-store": 30,
+        "shelly": 1,
+        "egison": 13,
+        "yesod-auth": 1,
+        "warp": 29,
+        "purescript": 74,
+        "brick": 98,
+        "hledger": 48,
+        "rattletrap": 29,
+        "lens": 75,
+        "tls": 55,
+        "shake": 88
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 6,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": true,
+      "doc": {
+        "sig": "(+), (-), (*) :: a -> a -> a",
+        "text": "(method of class Num) Basic numeric class.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Num"
+      }
+    },
+    {
+      "name": "<*>",
+      "count": 3241,
+      "pkgs": 25,
+      "byPkg": {
+        "git-annex": 568,
+        "pandoc": 198,
+        "texmath": 22,
+        "hakyll": 26,
+        "sbv": 304,
+        "yesod-core": 3,
+        "ghc-lib": 317,
+        "hlint": 2,
+        "wai-extra": 1,
+        "persistent": 13,
+        "persistent-sqlite": 5,
+        "futhark": 1006,
+        "haskoin-store": 35,
+        "shelly": 1,
+        "egison": 147,
+        "yesod-auth": 45,
+        "warp": 1,
+        "purescript": 324,
+        "brick": 19,
+        "hledger": 2,
+        "rattletrap": 1,
+        "lens": 138,
+        "yesod-bin": 21,
+        "tls": 19,
+        "shake": 23
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(<*>) :: f (a -> b) -> f a -> f b",
+        "text": "Sequential application.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": ":::",
+      "count": 3213,
+      "pkgs": 1,
+      "byPkg": {
+        "vulkan": 3213
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": null
+    },
+    {
+      "name": "*",
+      "count": 3029,
+      "pkgs": 27,
+      "byPkg": {
+        "git-annex": 74,
+        "pandoc": 126,
+        "texmath": 14,
+        "hakyll": 1,
+        "sbv": 847,
+        "yesod-core": 15,
+        "tidal": 7,
+        "ghc-lib": 137,
+        "hlint": 10,
+        "wai-extra": 7,
+        "persistent": 3,
+        "vulkan": 996,
+        "persistent-sqlite": 1,
+        "futhark": 546,
+        "haskoin-store": 40,
+        "shelly": 2,
+        "egison": 6,
+        "yesod-auth": 3,
+        "warp": 7,
+        "purescript": 12,
+        "brick": 27,
+        "hledger": 15,
+        "rattletrap": 8,
+        "lens": 22,
+        "yesod-bin": 1,
+        "tls": 16,
+        "shake": 86
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 7,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(+), (-), (*) :: a -> a -> a",
+        "text": "(method of class Num) Basic numeric class.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Num"
+      }
+    },
+    {
+      "name": ">>=",
+      "count": 2929,
+      "pkgs": 27,
+      "byPkg": {
+        "git-annex": 841,
+        "pandoc": 679,
+        "texmath": 69,
+        "hakyll": 71,
+        "sbv": 263,
+        "yesod-core": 21,
+        "tidal": 6,
+        "ghc-lib": 164,
+        "hlint": 27,
+        "wai-extra": 11,
+        "persistent": 11,
+        "futhark": 83,
+        "haskoin-store": 150,
+        "shelly": 17,
+        "egison": 115,
+        "yesod-auth": 18,
+        "warp": 9,
+        "purescript": 246,
+        "brick": 8,
+        "hledger": 17,
+        "rattletrap": 1,
+        "lens": 24,
+        "http-conduit": 1,
+        "yesod-bin": 3,
+        "tls": 61,
+        "yesod": 6,
+        "shake": 7
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 1,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(>>=) :: forall a b. m a -> (a -> m b) -> m b",
+        "text": "Sequentially compose two actions, passing any value produced by the first as an argument to the second.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": "&&",
+      "count": 2666,
+      "pkgs": 24,
+      "byPkg": {
+        "git-annex": 257,
+        "pandoc": 528,
+        "texmath": 31,
+        "hakyll": 7,
+        "sbv": 163,
+        "yesod-core": 15,
+        "tidal": 4,
+        "ghc-lib": 949,
+        "hlint": 36,
+        "wai-extra": 10,
+        "persistent": 13,
+        "futhark": 236,
+        "haskoin-store": 6,
+        "shelly": 1,
+        "egison": 49,
+        "warp": 21,
+        "purescript": 124,
+        "brick": 40,
+        "hledger": 42,
+        "rattletrap": 7,
+        "lens": 25,
+        "tls": 53,
+        "yesod": 1,
+        "shake": 48
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 3,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(&&) :: Bool -> Bool -> Bool",
+        "text": "Boolean \"and\", lazy in the second argument",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Classes"
+      }
+    },
+    {
+      "name": "-",
+      "count": 2659,
+      "pkgs": 25,
+      "byPkg": {
+        "git-annex": 147,
+        "pandoc": 235,
+        "texmath": 16,
+        "hakyll": 8,
+        "sbv": 717,
+        "yesod-core": 4,
+        "tidal": 20,
+        "ghc-lib": 519,
+        "hlint": 8,
+        "wai-extra": 11,
+        "persistent": 5,
+        "vulkan": 38,
+        "persistent-sqlite": 1,
+        "futhark": 451,
+        "haskoin-store": 29,
+        "egison": 21,
+        "yesod-auth": 7,
+        "warp": 26,
+        "purescript": 102,
+        "brick": 125,
+        "hledger": 44,
+        "rattletrap": 12,
+        "lens": 28,
+        "tls": 40,
+        "shake": 45
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 6,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(+), (-), (*) :: a -> a -> a",
+        "text": "(method of class Num) Basic numeric class.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Num"
+      }
+    },
+    {
+      "name": "||",
+      "count": 2029,
+      "pkgs": 26,
+      "byPkg": {
+        "git-annex": 221,
+        "pandoc": 615,
+        "texmath": 39,
+        "hakyll": 9,
+        "sbv": 124,
+        "yesod-core": 6,
+        "tidal": 1,
+        "ghc-lib": 534,
+        "hlint": 44,
+        "wai-extra": 16,
+        "persistent": 5,
+        "vulkan": 34,
+        "futhark": 157,
+        "haskoin-store": 3,
+        "shelly": 2,
+        "egison": 17,
+        "yesod-auth": 1,
+        "warp": 14,
+        "purescript": 73,
+        "brick": 4,
+        "hledger": 24,
+        "rattletrap": 3,
+        "lens": 14,
+        "yesod-bin": 3,
+        "tls": 7,
+        "shake": 59
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 2,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(||) :: Bool -> Bool -> Bool",
+        "text": "Boolean \"or\", lazy in the second argument",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Classes"
+      }
+    },
+    {
+      "name": "/=",
+      "count": 2026,
+      "pkgs": 29,
+      "byPkg": {
+        "git-annex": 285,
+        "pandoc": 354,
+        "texmath": 10,
+        "hakyll": 7,
+        "sbv": 136,
+        "yesod-core": 5,
+        "tidal": 1,
+        "ghc-lib": 195,
+        "hlint": 41,
+        "wai-extra": 13,
+        "persistent": 19,
+        "vulkan": 601,
+        "persistent-sqlite": 3,
+        "futhark": 142,
+        "haskoin-store": 7,
+        "shelly": 1,
+        "egison": 14,
+        "yesod-auth": 3,
+        "warp": 9,
+        "purescript": 39,
+        "brick": 7,
+        "hledger": 17,
+        "rattletrap": 6,
+        "lens": 5,
+        "http-conduit": 2,
+        "yesod-bin": 2,
+        "tls": 35,
+        "yesod": 1,
+        "shake": 66
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(==), (/=) :: a -> a -> Bool",
+        "text": "(method of class Eq) The Eq class defines equality (`==`) and inequality (`/=`).",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Classes"
+      }
+    },
+    {
+      "name": "<|>",
+      "count": 2018,
+      "pkgs": 22,
+      "byPkg": {
+        "git-annex": 100,
+        "pandoc": 1392,
+        "texmath": 116,
+        "hakyll": 8,
+        "yesod-core": 7,
+        "tidal": 3,
+        "ghc-lib": 29,
+        "hlint": 3,
+        "wai-extra": 4,
+        "persistent": 18,
+        "futhark": 37,
+        "haskoin-store": 3,
+        "shelly": 5,
+        "egison": 213,
+        "warp": 5,
+        "purescript": 38,
+        "brick": 7,
+        "hledger": 9,
+        "rattletrap": 2,
+        "lens": 9,
+        "yesod-bin": 4,
+        "tls": 6
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 3,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": true,
+      "doc": {
+        "sig": "(<|>) :: f a -> f a -> f a",
+        "text": "An associative binary operation",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": "=<<",
+      "count": 1885,
+      "pkgs": 21,
+      "byPkg": {
+        "git-annex": 878,
+        "pandoc": 48,
+        "texmath": 5,
+        "hakyll": 6,
+        "sbv": 48,
+        "yesod-core": 3,
+        "ghc-lib": 97,
+        "hlint": 15,
+        "wai-extra": 2,
+        "vulkan": 22,
+        "futhark": 592,
+        "haskoin-store": 52,
+        "shelly": 5,
+        "egison": 2,
+        "warp": 2,
+        "purescript": 46,
+        "brick": 5,
+        "hledger": 7,
+        "lens": 3,
+        "yesod-bin": 2,
+        "shake": 45
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 1,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(=<<) :: Monad m => (a -> m b) -> m a -> m b",
+        "text": "Same as `>>=`, but with the arguments interchanged.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": ".==",
+      "count": 1850,
+      "pkgs": 1,
+      "byPkg": {
+        "sbv": 1850
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "sbv"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(.==) :: a -> a -> SBool",
+        "text": "Symbolic equality.",
+        "pkg": "sbv",
+        "module": "Data.SBV.Core.Data"
+      }
+    },
+    {
+      "name": "$$",
+      "count": 1592,
+      "pkgs": 3,
+      "byPkg": {
+        "pandoc": 645,
+        "sbv": 111,
+        "ghc-lib": 836
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 5,
+        "pkg": "pretty"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "($$) :: Doc -> Doc -> Doc",
+        "text": "Above, except that if the last line of the first argument stops at least one position before the first line of the second begins, these two lines are overlapped.",
+        "pkg": "pretty",
+        "module": "Text.PrettyPrint.HughesPJ"
+      }
+    },
+    {
+      "name": ">>",
+      "count": 1328,
+      "pkgs": 26,
+      "byPkg": {
+        "git-annex": 53,
+        "pandoc": 609,
+        "texmath": 36,
+        "hakyll": 51,
+        "sbv": 59,
+        "yesod-core": 5,
+        "tidal": 4,
+        "ghc-lib": 71,
+        "hlint": 6,
+        "wai-extra": 8,
+        "persistent": 9,
+        "persistent-sqlite": 1,
+        "futhark": 55,
+        "haskoin-store": 36,
+        "shelly": 31,
+        "egison": 140,
+        "yesod-auth": 2,
+        "warp": 12,
+        "purescript": 23,
+        "brick": 4,
+        "hledger": 28,
+        "lens": 6,
+        "yesod-bin": 1,
+        "tls": 42,
+        "yesod": 1,
+        "shake": 35
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 1,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(>>) :: forall a b. m a -> m b -> m b",
+        "text": "Sequentially compose two actions, discarding any value produced by the first, like sequencing operators (such as the semicolon) in imperative languages.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": "</>",
+      "count": 1241,
+      "pkgs": 16,
+      "byPkg": {
+        "git-annex": 461,
+        "pandoc": 46,
+        "hakyll": 37,
+        "sbv": 13,
+        "ghc-lib": 59,
+        "hlint": 6,
+        "futhark": 486,
+        "haskoin-store": 3,
+        "shelly": 19,
+        "egison": 7,
+        "purescript": 37,
+        "brick": 1,
+        "hledger": 5,
+        "lens": 9,
+        "yesod-bin": 7,
+        "shake": 45
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 5,
+        "pkg": "filepath"
+      },
+      "fixityVaries": true,
+      "doc": {
+        "sig": "(</>) :: FILEPATH -> FILEPATH -> FILEPATH",
+        "text": "Combine two paths with a path separator. If the second path starts with a path separator or a drive letter, then it returns the second.",
+        "pkg": "filepath",
+        "module": "System.FilePath"
+      }
+    },
+    {
+      "name": "=:",
+      "count": 1223,
+      "pkgs": 1,
+      "byPkg": {
+        "sbv": 1223
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 1,
+        "pkg": "sbv"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(=:) :: ChainStep a (ChainsTo a) => a -> ChainsTo a -> ChainsTo a",
+        "text": "Chain steps in a calculational proof.",
+        "pkg": "sbv",
+        "module": "Data.SBV.TP.TP"
+      }
+    },
+    {
+      "name": "<",
+      "count": 1057,
+      "pkgs": 24,
+      "byPkg": {
+        "git-annex": 78,
+        "pandoc": 60,
+        "texmath": 4,
+        "hakyll": 4,
+        "sbv": 115,
+        "yesod-core": 7,
+        "tidal": 3,
+        "ghc-lib": 234,
+        "hlint": 9,
+        "wai-extra": 2,
+        "persistent": 2,
+        "vulkan": 280,
+        "futhark": 87,
+        "haskoin-store": 6,
+        "egison": 17,
+        "yesod-auth": 2,
+        "warp": 11,
+        "purescript": 22,
+        "brick": 26,
+        "hledger": 5,
+        "rattletrap": 6,
+        "lens": 28,
+        "tls": 27,
+        "shake": 22
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(<), (<=), (>), (>=) :: a -> a -> Bool",
+        "text": "(method of class Ord) The Ord class is used for totally ordered datatypes.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Classes"
+      }
+    },
+    {
+      "name": ">",
+      "count": 848,
+      "pkgs": 22,
+      "byPkg": {
+        "git-annex": 135,
+        "pandoc": 138,
+        "texmath": 14,
+        "hakyll": 3,
+        "sbv": 57,
+        "yesod-core": 3,
+        "ghc-lib": 186,
+        "hlint": 12,
+        "wai-extra": 14,
+        "persistent": 4,
+        "futhark": 119,
+        "haskoin-store": 25,
+        "egison": 19,
+        "yesod-auth": 1,
+        "warp": 9,
+        "purescript": 31,
+        "brick": 16,
+        "hledger": 10,
+        "rattletrap": 4,
+        "lens": 10,
+        "tls": 26,
+        "shake": 12
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(<), (<=), (>), (>=) :: a -> a -> Bool",
+        "text": "(method of class Ord) The Ord class is used for totally ordered datatypes.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Classes"
+      }
+    },
+    {
+      "name": "|=",
+      "count": 786,
+      "pkgs": 1,
+      "byPkg": {
+        "ghc-lib": 786
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": null
+    },
+    {
+      "name": ".:",
+      "count": 718,
+      "pkgs": 10,
+      "byPkg": {
+        "git-annex": 18,
+        "pandoc": 4,
+        "sbv": 498,
+        "ghc-lib": 15,
+        "persistent": 6,
+        "persistent-sqlite": 7,
+        "yesod-auth": 14,
+        "purescript": 153,
+        "yesod-bin": 2,
+        "yesod": 1
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 5,
+        "pkg": "sbv"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(.:) :: (FromJSON a) => Object -> Key -> Parser a",
+        "text": "Retrieve the value associated with the given key of an Object. The result is empty if the key is not present or the value cannot be converted to the desired type.",
+        "pkg": "aeson",
+        "module": "Data.Aeson.Types.FromJSON"
+      }
+    },
+    {
+      "name": "<*",
+      "count": 693,
+      "pkgs": 14,
+      "byPkg": {
+        "git-annex": 32,
+        "pandoc": 388,
+        "texmath": 19,
+        "hakyll": 1,
+        "tidal": 4,
+        "ghc-lib": 17,
+        "persistent": 6,
+        "vulkan": 10,
+        "futhark": 157,
+        "egison": 36,
+        "purescript": 4,
+        "hledger": 5,
+        "lens": 13,
+        "http-conduit": 1
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(<*) :: f a -> f b -> f a",
+        "text": "Sequence actions, discarding the value of the second argument.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": "*>",
+      "count": 678,
+      "pkgs": 16,
+      "byPkg": {
+        "git-annex": 9,
+        "pandoc": 386,
+        "texmath": 31,
+        "hakyll": 1,
+        "tidal": 4,
+        "ghc-lib": 9,
+        "persistent": 10,
+        "vulkan": 10,
+        "futhark": 130,
+        "shelly": 3,
+        "egison": 4,
+        "purescript": 52,
+        "hledger": 2,
+        "lens": 22,
+        "http-conduit": 1,
+        "shake": 4
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(*>) :: f a -> f b -> f b",
+        "text": "Sequence actions, discarding the value of the first argument.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": ">=",
+      "count": 649,
+      "pkgs": 24,
+      "byPkg": {
+        "git-annex": 79,
+        "pandoc": 114,
+        "texmath": 6,
+        "hakyll": 4,
+        "sbv": 76,
+        "yesod-core": 3,
+        "tidal": 5,
+        "ghc-lib": 123,
+        "hlint": 11,
+        "wai-extra": 5,
+        "persistent": 1,
+        "vulkan": 47,
+        "persistent-sqlite": 1,
+        "futhark": 62,
+        "egison": 3,
+        "yesod-auth": 1,
+        "warp": 9,
+        "purescript": 6,
+        "brick": 14,
+        "hledger": 11,
+        "rattletrap": 16,
+        "lens": 2,
+        "tls": 24,
+        "shake": 26
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(<), (<=), (>), (>=) :: a -> a -> Bool",
+        "text": "(method of class Ord) The Ord class is used for totally ordered datatypes.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Classes"
+      }
+    },
+    {
+      "name": "??",
+      "count": 648,
+      "pkgs": 2,
+      "byPkg": {
+        "sbv": 638,
+        "lens": 10
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 2,
+        "pkg": "sbv"
+      },
+      "fixityVaries": true,
+      "doc": {
+        "sig": "(??) :: HintsTo a b => a -> b -> Hinted a",
+        "text": "Attaching a hint",
+        "pkg": "sbv",
+        "module": "Data.SBV.TP.TP"
+      }
+    },
+    {
+      "name": "<=",
+      "count": 609,
+      "pkgs": 23,
+      "byPkg": {
+        "git-annex": 55,
+        "pandoc": 103,
+        "texmath": 13,
+        "hakyll": 2,
+        "sbv": 85,
+        "yesod-core": 1,
+        "ghc-lib": 194,
+        "hlint": 5,
+        "wai-extra": 5,
+        "persistent": 6,
+        "vulkan": 8,
+        "futhark": 47,
+        "haskoin-store": 5,
+        "egison": 4,
+        "yesod-auth": 1,
+        "warp": 11,
+        "purescript": 8,
+        "brick": 20,
+        "hledger": 5,
+        "rattletrap": 1,
+        "lens": 8,
+        "tls": 11,
+        "shake": 11
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(<), (<=), (>), (>=) :: a -> a -> Bool",
+        "text": "(method of class Ord) The Ord class is used for totally ordered datatypes.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Classes"
+      }
+    },
+    {
+      "name": "^.",
+      "count": 596,
+      "pkgs": 7,
+      "byPkg": {
+        "sbv": 156,
+        "futhark": 32,
+        "haskoin-store": 3,
+        "purescript": 59,
+        "brick": 324,
+        "hledger": 8,
+        "lens": 14
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 8,
+        "pkg": "sbv"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(^.) :: a -> (a -> b) -> b",
+        "text": "Field access, inspired by the lens library.",
+        "pkg": "sbv",
+        "module": "Data.SBV.Tuple"
+      }
+    },
+    {
+      "name": "<$",
+      "count": 586,
+      "pkgs": 14,
+      "byPkg": {
+        "git-annex": 1,
+        "pandoc": 433,
+        "texmath": 46,
+        "hakyll": 5,
+        "ghc-lib": 14,
+        "hlint": 2,
+        "persistent": 5,
+        "vulkan": 1,
+        "persistent-sqlite": 2,
+        "futhark": 7,
+        "egison": 35,
+        "purescript": 2,
+        "brick": 1,
+        "lens": 32
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(<$) :: a -> f b -> f a",
+        "text": "Replace all locations in the input with the same value. The default definition is `fmap . const`, but this may be overridden with a more efficient version.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": ".=",
+      "count": 566,
+      "pkgs": 13,
+      "byPkg": {
+        "git-annex": 38,
+        "pandoc": 132,
+        "texmath": 3,
+        "hakyll": 5,
+        "yesod-core": 13,
+        "ghc-lib": 36,
+        "hlint": 18,
+        "wai-extra": 28,
+        "persistent": 5,
+        "yesod-auth": 3,
+        "purescript": 262,
+        "brick": 15,
+        "lens": 8
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "lens"
+      },
+      "fixityVaries": true,
+      "doc": {
+        "sig": "(.=) :: MonadState s m => ASetter s s a b -> b -> m ()",
+        "text": "Replace the target of a Lens or all of the targets of a Setter or Traversal in our monadic state with a new value, irrespective of the old.",
+        "pkg": "lens",
+        "module": "Control.Lens.Setter"
+      }
+    },
+    {
+      "name": "&",
+      "count": 551,
+      "pkgs": 8,
+      "byPkg": {
+        "git-annex": 2,
+        "ghc-lib": 70,
+        "futhark": 165,
+        "haskoin-store": 6,
+        "purescript": 181,
+        "brick": 88,
+        "hledger": 19,
+        "lens": 20
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 1,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(&) :: forall r a (b :: TYPE r). a -> (a -> b) -> b",
+        "text": "`&` is a reverse application operator. This provides notational convenience.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Data.Function"
+      }
+    },
+    {
+      "name": ".&&",
+      "count": 497,
+      "pkgs": 1,
+      "byPkg": {
+        "sbv": 497
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 3,
+        "pkg": "sbv"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(.&&) :: SBool -> SBool -> SBool",
+        "pkg": "sbv",
+        "module": "Data.SBV.Core.Data"
+      }
+    },
+    {
+      "name": "/",
+      "count": 458,
+      "pkgs": 20,
+      "byPkg": {
+        "git-annex": 13,
+        "pandoc": 75,
+        "texmath": 60,
+        "hakyll": 1,
+        "sbv": 77,
+        "yesod-core": 1,
+        "tidal": 4,
+        "ghc-lib": 14,
+        "hlint": 1,
+        "persistent": 2,
+        "futhark": 157,
+        "haskoin-store": 4,
+        "egison": 1,
+        "yesod-auth": 1,
+        "purescript": 3,
+        "brick": 8,
+        "hledger": 14,
+        "rattletrap": 4,
+        "lens": 8,
+        "shake": 10
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 7,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(/) :: a -> a -> a",
+        "text": "Fractional division.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Real"
+      }
+    },
+    {
+      "name": "!",
+      "count": 446,
+      "pkgs": 13,
+      "byPkg": {
+        "pandoc": 138,
+        "hakyll": 8,
+        "sbv": 15,
+        "yesod-core": 2,
+        "ghc-lib": 63,
+        "hlint": 1,
+        "futhark": 115,
+        "egison": 4,
+        "warp": 23,
+        "purescript": 59,
+        "rattletrap": 1,
+        "lens": 14,
+        "shake": 3
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 9,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "(!) :: Ix i => Array i e -> i -> e",
+        "text": "The value at the given index in an array.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Arr"
+      }
+    }
+  ],
+  "backticks": [
+    {
+      "name": "plusPtr",
+      "count": 13630,
+      "pkgs": 4,
+      "byPkg": {
+        "ghc-lib": 4,
+        "vulkan": 13602,
+        "warp": 19,
+        "shake": 5
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": {
+        "sig": "plusPtr :: Ptr a -> Int -> Ptr b",
+        "text": "Advances the given address by the given offset in bytes.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Ptr"
+      }
+    },
+    {
+      "name": "elem",
+      "count": 1136,
+      "pkgs": 22,
+      "byPkg": {
+        "git-annex": 143,
+        "pandoc": 345,
+        "texmath": 30,
+        "hakyll": 7,
+        "sbv": 106,
+        "yesod-core": 4,
+        "tidal": 1,
+        "ghc-lib": 135,
+        "hlint": 36,
+        "wai-extra": 9,
+        "persistent": 7,
+        "persistent-sqlite": 1,
+        "futhark": 130,
+        "haskoin-store": 1,
+        "egison": 15,
+        "purescript": 42,
+        "brick": 8,
+        "hledger": 33,
+        "lens": 2,
+        "yesod-bin": 2,
+        "tls": 46,
+        "shake": 33
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "elem :: (Eq a) => a -> [a] -> Bool",
+        "text": "elem is the list membership predicate, usually written in infix form, e.g., `x \\elem\\ xs`.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.List"
+      }
+    },
+    {
+      "name": "snocOL",
+      "count": 680,
+      "pkgs": 1,
+      "byPkg": {
+        "ghc-lib": 680
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": null
+    },
+    {
+      "name": "appOL",
+      "count": 674,
+      "pkgs": 1,
+      "byPkg": {
+        "ghc-lib": 674
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": null
+    },
+    {
+      "name": "isPrefixOf",
+      "count": 396,
+      "pkgs": 19,
+      "byPkg": {
+        "git-annex": 132,
+        "pandoc": 115,
+        "texmath": 2,
+        "hakyll": 13,
+        "sbv": 36,
+        "ghc-lib": 15,
+        "hlint": 14,
+        "wai-extra": 2,
+        "persistent": 5,
+        "futhark": 22,
+        "egison": 1,
+        "yesod-auth": 1,
+        "warp": 2,
+        "purescript": 10,
+        "brick": 1,
+        "hledger": 12,
+        "yesod-bin": 4,
+        "tls": 2,
+        "shake": 7
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": {
+        "sig": "isPrefixOf :: (Eq a) => [a] -> [a] -> Bool",
+        "text": "O(min(m,n)). The isPrefixOf function takes two lists and returns True iff the first list is a prefix of the second.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Data.OldList"
+      }
+    },
+    {
+      "name": "advancePtrBytes",
+      "count": 377,
+      "pkgs": 1,
+      "byPkg": {
+        "vulkan": 377
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": {
+        "sig": "advancePtrBytes :: Ptr a -> Int -> Ptr a",
+        "text": "A type restricted plusPtr",
+        "pkg": "vulkan",
+        "module": "Vulkan.CStruct.Utils"
+      }
+    },
+    {
+      "name": "at",
+      "count": 377,
+      "pkgs": 1,
+      "byPkg": {
+        "sbv": 377
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": {
+        "sig": "at :: Proof a -> IArgs a -> Proof Bool",
+        "text": "Apply a universal proof to some arguments, creating a boolean expression guaranteed to be true",
+        "pkg": "sbv",
+        "module": "Data.SBV.TP.TP"
+      }
+    },
+    {
+      "name": "member",
+      "count": 276,
+      "pkgs": 18,
+      "byPkg": {
+        "git-annex": 21,
+        "pandoc": 47,
+        "texmath": 2,
+        "hakyll": 12,
+        "sbv": 31,
+        "yesod-core": 1,
+        "ghc-lib": 15,
+        "hlint": 6,
+        "wai-extra": 1,
+        "persistent": 1,
+        "futhark": 84,
+        "haskoin-store": 9,
+        "shelly": 1,
+        "egison": 8,
+        "purescript": 26,
+        "brick": 3,
+        "lens": 2,
+        "shake": 6
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": {
+        "sig": "member :: Ord k => k -> Map k a -> Bool",
+        "text": "O(log n). Is the key a member of the map? See also notMember.",
+        "pkg": "containers",
+        "module": "Data.Map.Internal"
+      }
+    },
+    {
+      "name": "notElem",
+      "count": 248,
+      "pkgs": 18,
+      "byPkg": {
+        "git-annex": 44,
+        "pandoc": 50,
+        "texmath": 1,
+        "hakyll": 1,
+        "sbv": 19,
+        "yesod-core": 1,
+        "ghc-lib": 17,
+        "hlint": 24,
+        "wai-extra": 1,
+        "persistent": 8,
+        "futhark": 46,
+        "haskoin-store": 1,
+        "egison": 2,
+        "purescript": 10,
+        "brick": 1,
+        "hledger": 10,
+        "tls": 7,
+        "shake": 5
+      },
+      "fixity": {
+        "assoc": "infix",
+        "prec": 4,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "notElem :: (Eq a) => a -> [a] -> Bool",
+        "text": "notElem is the negation of elem.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.List"
+      }
+    },
+    {
+      "name": "mappend",
+      "count": 208,
+      "pkgs": 18,
+      "byPkg": {
+        "git-annex": 3,
+        "pandoc": 3,
+        "hakyll": 11,
+        "yesod-core": 20,
+        "ghc-lib": 20,
+        "hlint": 2,
+        "wai-extra": 10,
+        "persistent": 37,
+        "persistent-sqlite": 3,
+        "futhark": 1,
+        "shelly": 10,
+        "egison": 3,
+        "yesod-auth": 46,
+        "purescript": 8,
+        "brick": 1,
+        "lens": 27,
+        "tls": 2,
+        "shake": 1
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": {
+        "sig": "mappend :: a -> a -> a",
+        "text": "An associative operation",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Base"
+      }
+    },
+    {
+      "name": "seq",
+      "count": 196,
+      "pkgs": 11,
+      "byPkg": {
+        "git-annex": 3,
+        "hakyll": 6,
+        "sbv": 73,
+        "yesod-core": 10,
+        "ghc-lib": 52,
+        "hlint": 2,
+        "persistent": 2,
+        "futhark": 5,
+        "lens": 23,
+        "tls": 2,
+        "shake": 18
+      },
+      "fixity": {
+        "assoc": "infixr",
+        "prec": 0,
+        "pkg": "ghc-lib"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "seq :: a -> b -> b",
+        "text": "Evaluates its first argument to weak head normal form, and then returns its second argument as the result.",
+        "pkg": "ghc-prim",
+        "module": "GHC.Prim"
+      }
+    },
+    {
+      "name": "op",
+      "count": 193,
+      "pkgs": 4,
+      "byPkg": {
+        "sbv": 168,
+        "ghc-lib": 3,
+        "futhark": 3,
+        "purescript": 19
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": {
+        "sig": "op :: Wrapped s => (Unwrapped s -> s) -> s -> Unwrapped s",
+        "text": "Given the constructor for a Wrapped type, return a deconstructor that is its inverse.",
+        "pkg": "lens",
+        "module": "Control.Lens.Wrapped"
+      }
+    },
+    {
+      "name": "sEMod",
+      "count": 178,
+      "pkgs": 1,
+      "byPkg": {
+        "sbv": 178
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": {
+        "sig": "sEMod :: SInteger -> SInteger -> SInteger",
+        "text": "Euclidian modulus. Note that unlike regular modulus, Euclidian division by `0` is unconstrained. i.e., it can take any value whatsoever.",
+        "pkg": "sbv",
+        "module": "Data.SBV.Core.Model"
+      }
+    },
+    {
+      "name": "div",
+      "count": 176,
+      "pkgs": 12,
+      "byPkg": {
+        "git-annex": 21,
+        "pandoc": 20,
+        "texmath": 1,
+        "sbv": 18,
+        "ghc-lib": 35,
+        "persistent": 1,
+        "futhark": 51,
+        "haskoin-store": 5,
+        "brick": 11,
+        "hledger": 2,
+        "tls": 5,
+        "shake": 6
+      },
+      "fixity": {
+        "assoc": "infixl",
+        "prec": 7,
+        "pkg": "ghc-internal"
+      },
+      "fixityVaries": false,
+      "doc": {
+        "sig": "div :: a -> a -> a",
+        "text": "Integer division truncated toward negative infinity.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.Real"
+      }
+    },
+    {
+      "name": "lookup",
+      "count": 153,
+      "pkgs": 12,
+      "byPkg": {
+        "git-annex": 6,
+        "pandoc": 6,
+        "sbv": 42,
+        "ghc-lib": 1,
+        "wai-extra": 4,
+        "futhark": 48,
+        "haskoin-store": 4,
+        "purescript": 37,
+        "lens": 1,
+        "yesod-bin": 2,
+        "tls": 1,
+        "shake": 1
+      },
+      "fixity": null,
+      "fixityVaries": false,
+      "doc": {
+        "sig": "lookup :: (Eq a) => a -> [(a,b)] -> Maybe b",
+        "text": "O(n). lookup `key assocs` looks up a key in an association list. For the result to be Nothing, the list must be finite.",
+        "pkg": "ghc-internal",
+        "module": "GHC.Internal.List"
+      }
+    }
+  ],
+  "syntax": [
+    {
+      "name": "=",
+      "count": 226891,
+      "pkgs": 29
+    },
+    {
+      "name": "->",
+      "count": 170922,
+      "pkgs": 29
+    },
+    {
+      "name": "::",
+      "count": 85492,
+      "pkgs": 29
+    },
+    {
+      "name": "<-",
+      "count": 54171,
+      "pkgs": 29
+    },
+    {
+      "name": "|",
+      "count": 29497,
+      "pkgs": 29
+    },
+    {
+      "name": "\\",
+      "count": 19620,
+      "pkgs": 29
+    },
+    {
+      "name": "@",
+      "count": 15767,
+      "pkgs": 25
+    },
+    {
+      "name": "..",
+      "count": 14773,
+      "pkgs": 29
+    },
+    {
+      "name": "=>",
+      "count": 13658,
+      "pkgs": 29
+    },
+    {
+      "name": "~",
+      "count": 2461,
+      "pkgs": 16
+    }
+  ]
+}

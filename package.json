@@ -4,10 +4,12 @@
   "description": "Measure token density (tokens per byte) of popular JavaScript/TypeScript code from npm",
   "type": "module",
   "bin": {
-    "token-density": "./src/cli.js"
+    "token-density": "./src/cli.js",
+    "haskell-operators": "./src/haskell/cli.js"
   },
   "scripts": {
-    "report": "node src/cli.js"
+    "report": "node src/cli.js",
+    "haskell-operators": "node src/haskell/cli.js"
   },
   "engines": {
     "node": ">=20"

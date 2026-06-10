@@ -144,3 +144,6 @@ vite.config.ts.timestamp-*
 
 # token-density corpus (installed npm packages)
 corpus/
+
+# haskell-operators corpus (extracted Hackage tarballs)
+corpus-haskell/
