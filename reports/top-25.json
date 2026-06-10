@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "date": "2026-06-10",
+    "requested": [
+      "ansi-styles",
+      "strip-ansi",
+      "ansi-regex",
+      "string-width",
+      "supports-color",
+      "chalk",
+      "commander",
+      "wrap-ansi",
+      "tslib",
+      "minipass",
+      "type-fest",
+      "react-is",
+      "readable-stream",
+      "escape-string-regexp",
+      "p-limit",
+      "locate-path",
+      "p-locate",
+      "has-flag",
+      "is-fullwidth-code-point",
+      "js-yaml",
+      "postcss",
+      "agent-base",
+      "string_decoder",
+      "resolve",
+      "isarray"
+    ],
+    "failed": [],
+    "packagesInTree": 46,
+    "scanStats": {
+      "skippedTooLarge": {
+        "files": 0,
+        "bytes": 0
+      },
+      "skippedDuplicate": {
+        "files": 10,
+        "bytes": 28029
+      },
+      "skippedMinified": {
+        "files": 5,
+        "bytes": 66647
+      },
+      "skippedDts": {
+        "files": 280,
+        "bytes": 731577
+      },
+      "parseFailures": 0
+    },
+    "options": {
+      "maxFileBytes": 5000000,
+      "includeMinified": false,
+      "includeDts": false
+    }
+  },
+  "totals": {
+    "files": 281,
+    "bytes": 1598185,
+    "chars": 1597883,
+    "tokens": 269810,
+    "astNodes": 117525,
+    "tokensPerByte": 0.16882275831646523,
+    "bytesPerToken": 5.923372002520292,
+    "nodesPerToken": 0.4355843000630073
+  },
+  "bytesPerTokenPercentiles": {
+    "p5": 3.3258426966292136,
+    "p10": 3.8807339449541285,
+    "p25": 4.472727272727273,
+    "p50": 5.30182463253928,
+    "p75": 7.060509554140127,
+    "p90": 10.380952380952381,
+    "p95": 12.216216216216216
+  },
+  "byClass": {
+    "js": {
+      "files": 281,
+      "bytes": 1598185,
+      "tokens": 269810,
+      "nodes": 117525
+    },
+    "ts": {
+      "files": 0,
+      "bytes": 0,
+      "tokens": 0,
+      "nodes": 0
+    },
+    "dts": {
+      "files": 0,
+      "bytes": 0,
+      "tokens": 0,
+      "nodes": 0
+    },
+    "minified": {
+      "files": 0,
+      "bytes": 0,
+      "tokens": 0,
+      "nodes": 0
+    }
+  },
+  "categories": {
+    "identifier": {
+      "count": 79776,
+      "chars": 550882
+    },
+    "keyword": {
+      "count": 28659,
+      "chars": 122531
+    },
+    "punctuation": {
+      "count": 146513,
+      "chars": 159741
+    },
+    "string": {
+      "count": 8173,
+      "chars": 108323
+    },
+    "template": {
+      "count": 455,
+      "chars": 5451
+    },
+    "number": {
+      "count": 6024,
+      "chars": 9110
+    },
+    "regex": {
+      "count": 210,
+      "chars": 4649
+    },
+    "jsxText": {
+      "count": 0,
+      "chars": 0
+    },
+    "other": {
+      "count": 0,
+      "chars": 0
+    }
+  },
+  "trivia": {
+    "comments": {
+      "count": 3361,
+      "chars": 237342
+    },
+    "whitespaceChars": 399854
+  },
+  "kinds": {
+    "Identifier": 79753,
+    ")": 23616,
+    "(": 23616,
+    ".": 19006,
+    ",": 12717,
+    ";": 12015,
+    "=": 10690,
+    "}": 9606,
+    "{": 9606,
+    "StringLiteral": 8173,
+    "NumericLiteral": 6024,
+    "if": 4702,
+    "this": 3989,
+    "]": 3689,
+    "[": 3689,
+    ":": 3222,
+    "return": 3203,
+    "===": 2351,
+    "function": 2253,
+    "const": 1910,
+    "let": 1889,
+    "&&": 1763,
+    "var": 1753,
+    "+": 1483,
+    "!": 1240,
+    "!==": 1235,
+    "||": 1187,
+    "else": 1170,
+    "null": 1138,
+    "new": 889,
+    "true": 881,
+    "false": 836,
+    "-": 809,
+    "?": 695,
+    "=>": 649,
+    "typeof": 627,
+    "+=": 587,
+    "<": 549,
+    "for": 495,
+    "++": 490,
+    "throw": 482,
+    ">": 330,
+    "case": 265,
+    "while": 246,
+    "RegularExpressionLiteral": 210,
+    ">=": 205,
+    "&": 187,
+    "break": 181,
+    "export": 179,
+    "TemplateTail": 176,
+    "TemplateHead": 176,
+    "*": 155,
+    "...": 137,
+    "<=": 135,
+    "of": 131,
+    "try": 125,
+    "in": 121,
+    "catch": 116,
+    "!=": 102,
+    "TemplateMiddle": 99,
+    ">>": 95,
+    "<<": 92,
+    "super": 84,
+    "instanceof": 84,
+    "get": 83,
+    "continue": 83,
+    "class": 79,
+    "|": 77,
+    "--": 76,
+    "from": 74,
+    ">>>": 74,
+    "constructor": 72,
+    "import": 71,
+    "await": 64,
+    "async": 61,
+    "default": 58,
+    "-=": 55,
+    "extends": 52,
+    "==": 50,
+    "/": 46,
+    "switch": 45,
+    "delete": 44,
+    "%": 37,
+    "do": 29,
+    "void": 28,
+    "**": 27,
+    "|=": 27,
+    "??": 23,
+    "PrivateIdentifier": 23,
+    "as": 19,
+    "finally": 18,
+    "~": 18,
+    "?.": 17,
+    "set": 16,
+    "yield": 12,
+    "&=": 12,
+    "*=": 11,
+    ">>>=": 7,
+    "/=": 6,
+    "NoSubstitutionTemplateLiteral": 4,
+    ">>=": 2,
+    "static": 2
+  }
+}
