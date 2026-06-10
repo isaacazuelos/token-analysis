@@ -1,4 +1,7 @@
-# token-analysis
+# Token Analysis
+
+I had Claude Fable 5.0 build this to answer a question I had working on my own
+language and parser. Everything after this sentence is AI-generated.
 
 A tool to see some facts about token density: it measures **tokens per byte**
 of real-world JavaScript/TypeScript, as a proxy corpus for sizing
