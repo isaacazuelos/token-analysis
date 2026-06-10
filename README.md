@@ -41,7 +41,8 @@ Options:
 | `--max-file-bytes <n>` | 5000000 | skip files larger than this |
 | `--out <file>` / `--json <file>` | – | write the report / raw aggregates |
 
-A sample report is checked in at [`reports/top-25.md`](reports/top-25.md).
+Sample reports are checked in at [`reports/top-25.md`](reports/top-25.md) and
+[`reports/top-100.md`](reports/top-100.md).
 
 ## How it works
 
