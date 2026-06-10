@@ -32,7 +32,7 @@ function looksMinified(basename, text) {
   return avg > 250;
 }
 
-function* walk(dir) {
+function* walk(dir, excludeDirs) {
   let entries;
   try {
     entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -43,7 +43,8 @@ function* walk(dir) {
     const full = path.join(dir, entry.name);
     if (entry.isSymbolicLink()) continue; // .bin/ links, avoid double counting
     if (entry.isDirectory()) {
-      yield* walk(full);
+      if (excludeDirs?.has(entry.name)) continue;
+      yield* walk(full, excludeDirs);
     } else if (entry.isFile()) {
       yield full;
     }
@@ -57,10 +58,10 @@ function* walk(dir) {
  *
  * `stats` is mutated with counts of what was skipped and why.
  */
-export function* scanFiles(root, { maxFileBytes, includeMinified, includeDts }, stats) {
+export function* scanFiles(root, { maxFileBytes, includeMinified, includeDts, excludeDirs }, stats) {
   const seenHashes = new Set();
 
-  for (const filePath of walk(root)) {
+  for (const filePath of walk(root, excludeDirs)) {
     const ext = path.extname(filePath).toLowerCase();
     if (!JS_EXTENSIONS.has(ext) && !TS_EXTENSIONS.has(ext)) continue;
 

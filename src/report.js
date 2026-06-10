@@ -72,10 +72,17 @@ export function renderMarkdown(agg, meta) {
   const bytesPerToken = agg.perFile.map(([b, t]) => b / t).sort((a, b) => a - b);
   const lines = [];
 
+  const repoMode = meta.mode === 'repos';
   lines.push('# Token density report');
   lines.push('');
-  lines.push(`Generated ${meta.date} from the published files of npm packages and their`);
-  lines.push('dependencies, as a proxy corpus for modern JavaScript/TypeScript.');
+  if (repoMode) {
+    lines.push(`Generated ${meta.date} from the source repositories of top npm packages`);
+    lines.push('(hand-written code, build-output directories excluded), as a proxy corpus');
+    lines.push('for modern JavaScript/TypeScript.');
+  } else {
+    lines.push(`Generated ${meta.date} from the published files of npm packages and their`);
+    lines.push('dependencies, as a proxy corpus for modern JavaScript/TypeScript.');
+  }
   lines.push('');
   if (meta.requested.length > 0) {
     lines.push(`- Requested packages (${meta.requested.length}): ${meta.requested.join(', ')}`);
@@ -83,12 +90,19 @@ export function renderMarkdown(agg, meta) {
     lines.push('- Reused an existing corpus (`--skip-install`)');
   }
   if (meta.failed.length > 0) {
-    lines.push(`- Failed to install: ${meta.failed.join(', ')}`);
+    lines.push(`- ${repoMode ? 'No repo found / clone failed' : 'Failed to install'}: ${meta.failed.join(', ')}`);
   }
-  lines.push(`- Packages in corpus tree (incl. dependencies): ${num(meta.packagesInTree)}`);
+  if (repoMode) {
+    lines.push(`- Repositories cloned (monorepos deduped): ${num(meta.packagesInTree)}`);
+  } else {
+    lines.push(`- Packages in corpus tree (incl. dependencies): ${num(meta.packagesInTree)}`);
+  }
   lines.push('');
 
   lines.push('## Headline numbers');
+  lines.push('');
+  lines.push('Byte counts are raw input size (whitespace, comments, and all), so these');
+  lines.push('ratios apply directly to an input string’s length.');
   lines.push('');
   lines.push(`- **Tokens per byte: ${fix(agg.tokens / agg.bytes, 4)}**`);
   lines.push(`- **Bytes per token: ${fix(agg.bytes / agg.tokens)}**`);
@@ -195,9 +209,15 @@ export function renderMarkdown(agg, meta) {
 
   lines.push('## Caveats');
   lines.push('');
-  lines.push('- Published npm files skew toward compiled/bundled output, which is denser');
-  lines.push('  than hand-written source. Minified files are bucketed separately (excluded');
-  lines.push('  by default) to limit this, but transpiled output remains.');
+  if (repoMode) {
+    lines.push('- Repos include tests and fixtures alongside the shipping source; common');
+    lines.push('  build-output directories (dist, build, vendor, ...) are skipped, but any');
+    lines.push('  committed generated code outside those is still counted.');
+  } else {
+    lines.push('- Published npm files skew toward compiled/bundled output, which is denser');
+    lines.push('  than hand-written source. Minified files are bucketed separately (excluded');
+    lines.push('  by default) to limit this, but transpiled output remains.');
+  }
   lines.push('- Tokenization follows TypeScript’s grammar; comments and whitespace are');
   lines.push('  trivia, not tokens. If your scanner emits comment tokens, add the comment');
   lines.push('  count to the token totals.');

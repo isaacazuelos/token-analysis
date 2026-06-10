@@ -5,6 +5,10 @@ of real-world JavaScript/TypeScript, as a proxy corpus for sizing
 scanner/parser SoA vec capacities (`capacity ≈ source_bytes / bytes_per_token`)
 in a new language without a corpus of its own.
 
+"Per byte" means per byte of raw input — file size on disk, including
+whitespace, comments, and everything else the scanner skips — so the ratios
+can be applied directly to an input string's length.
+
 It pulls the most-downloaded npm packages, installs them (and their
 dependencies) into a local `corpus/` directory, tokenizes every `.js`/`.ts`
 file with the TypeScript compiler, and prints a markdown report with the
@@ -24,6 +28,10 @@ node src/cli.js --top 50 --out reports/top-50.md --json reports/top-50.json
 # A corpus of your choosing:
 node src/cli.js --packages react,typescript,lodash,express
 
+# Clone the packages' source repos instead of using the published npm files
+# (hand-written source rather than transpiled/bundled output):
+node src/cli.js --repos --top 100 --out reports/top-100-repos.md
+
 # Re-run analysis on an already-downloaded corpus (no network):
 node src/cli.js --skip-install --include-dts
 ```
@@ -34,6 +42,7 @@ Options:
 | --- | --- | --- |
 | `-t, --top <n>` | 25 | how many top packages to pull |
 | `-p, --packages <a,b>` | – | explicit package list instead of `--top` |
+| `--repos` | off | clone source repos instead of installing npm files |
 | `--workdir <dir>` | `corpus` | where the corpus is installed |
 | `--skip-install` | off | reuse the existing corpus, no network |
 | `--include-minified` | off | tokenize minified files (own report bucket) |
@@ -41,8 +50,9 @@ Options:
 | `--max-file-bytes <n>` | 5000000 | skip files larger than this |
 | `--out <file>` / `--json <file>` | – | write the report / raw aggregates |
 
-Sample reports are checked in at [`reports/top-25.md`](reports/top-25.md) and
-[`reports/top-100.md`](reports/top-100.md).
+Sample reports are checked in at [`reports/top-25.md`](reports/top-25.md),
+[`reports/top-100.md`](reports/top-100.md) (published npm files), and
+[`reports/top-100-repos.md`](reports/top-100-repos.md) (cloned source repos).
 
 ## How it works
 
@@ -55,6 +65,14 @@ Sample reports are checked in at [`reports/top-25.md`](reports/top-25.md) and
   `--ignore-scripts`, so common dependencies are deduped and no third-party
   install scripts run. Files with identical contents (the same module
   published in several packages) are counted once.
+- **Repo mode** (`--repos`) — instead of the published files, each package's
+  `repository.url` is resolved from the registry and shallow-cloned (monorepos
+  hosting several packages are cloned once). This measures hand-written source
+  rather than transpiled/bundled output; `.git`, `node_modules`, and common
+  build-output directories (`dist`, `build`, `vendor`, ...) are skipped.
+  Test/fixture directories are skipped too unless `--include-tests` is given:
+  compiler repos (TypeScript, babel) carry tens of thousands of intentionally
+  weird fixture files that would otherwise dominate the corpus.
 - **Tokenization** — files are parsed with the TypeScript compiler and the
   concrete syntax tree is walked down to its token leaves. A full parse (vs.
   running the scanner directly) keeps context-sensitive tokens correct: regex

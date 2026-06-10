@@ -7,6 +7,7 @@ import { parseArgs } from 'node:util';
 
 import { buildCorpus, countInstalledPackages } from './corpus.js';
 import { addFile, newAggregate, renderMarkdown, toJson } from './report.js';
+import { cloneRepos, countClonedRepos, REPO_EXCLUDE_DIRS, REPO_TEST_DIRS } from './repos.js';
 import { newScanStats, scanFiles } from './scan.js';
 import { fetchTopPackages } from './top-packages.js';
 import { tokenizeFile } from './tokenize.js';
@@ -18,6 +19,9 @@ Usage: node src/cli.js [options]
 Options:
   -t, --top <n>           number of top packages to pull (default: 25)
   -p, --packages <list>   comma-separated package names (overrides --top)
+      --repos             clone the packages' source repos and analyze those
+                          instead of the published npm files
+      --include-tests     repo mode: also scan test/fixture directories
       --workdir <dir>     where to install the corpus (default: corpus)
       --skip-install      reuse an existing corpus, don't touch the network
       --include-minified  tokenize minified files too (own report bucket)
@@ -34,6 +38,8 @@ function main() {
       top: { type: 'string', short: 't', default: '25' },
       packages: { type: 'string', short: 'p' },
       workdir: { type: 'string', default: 'corpus' },
+      repos: { type: 'boolean', default: false },
+      'include-tests': { type: 'boolean', default: false },
       'skip-install': { type: 'boolean', default: false },
       'include-minified': { type: 'boolean', default: false },
       'include-dts': { type: 'boolean', default: false },
@@ -59,6 +65,8 @@ function main() {
 }
 
 async function run(args, workdir, log) {
+  const mode = args.repos ? 'repos' : 'npm';
+  const reposDir = path.join(workdir, 'repos');
   let requested = [];
   let failed = [];
 
@@ -75,7 +83,11 @@ async function run(args, workdir, log) {
       requested = ranked.map((p) => p.name);
       log(`top packages by weekly downloads: ${requested.slice(0, 10).join(', ')}${requested.length > 10 ? ', ...' : ''}`);
     }
-    ({ failed } = buildCorpus(workdir, requested, { log }));
+    if (mode === 'repos') {
+      ({ failed } = await cloneRepos(reposDir, requested, { log }));
+    } else {
+      ({ failed } = buildCorpus(workdir, requested, { log }));
+    }
   }
 
   const scanStats = newScanStats();
@@ -84,9 +96,13 @@ async function run(args, workdir, log) {
     maxFileBytes: Number.parseInt(args['max-file-bytes'], 10),
     includeMinified: args['include-minified'],
     includeDts: args['include-dts'],
+    excludeDirs:
+      mode === 'repos'
+        ? new Set([...REPO_EXCLUDE_DIRS, ...(args['include-tests'] ? [] : REPO_TEST_DIRS)])
+        : undefined,
   };
 
-  const root = path.join(workdir, 'node_modules');
+  const root = mode === 'repos' ? reposDir : path.join(workdir, 'node_modules');
   if (!fs.existsSync(root)) throw new Error(`no corpus at ${root}; run without --skip-install`);
 
   log('scanning and tokenizing ...');
@@ -105,11 +121,12 @@ async function run(args, workdir, log) {
 
   const meta = {
     date: new Date().toISOString().slice(0, 10),
+    mode,
     requested,
     failed,
-    packagesInTree: countInstalledPackages(workdir),
+    packagesInTree: mode === 'repos' ? countClonedRepos(reposDir) : countInstalledPackages(workdir),
     scanStats,
-    options: scanOpts,
+    options: { ...scanOpts, excludeDirs: scanOpts.excludeDirs && [...scanOpts.excludeDirs] },
   };
 
   const markdown = renderMarkdown(agg, meta);

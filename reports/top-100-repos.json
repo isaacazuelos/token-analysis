@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "date": "2026-06-10",
+    "mode": "repos",
+    "requested": [],
+    "failed": [],
+    "packagesInTree": 91,
+    "scanStats": {
+      "skippedTooLarge": {
+        "files": 0,
+        "bytes": 0
+      },
+      "skippedDuplicate": {
+        "files": 100,
+        "bytes": 94784
+      },
+      "skippedMinified": {
+        "files": 8,
+        "bytes": 321471
+      },
+      "skippedDts": {
+        "files": 461,
+        "bytes": 5776063
+      },
+      "parseFailures": 0
+    },
+    "options": {
+      "maxFileBytes": 5000000,
+      "includeMinified": false,
+      "includeDts": false,
+      "excludeDirs": [
+        ".git",
+        "node_modules",
+        "dist",
+        "build",
+        "out",
+        "output",
+        "vendor",
+        "coverage",
+        ".next",
+        ".yarn",
+        "test",
+        "tests",
+        "__tests__",
+        "fixtures",
+        "__fixtures__",
+        "__mocks__",
+        "testdata",
+        "test262"
+      ]
+    }
+  },
+  "totals": {
+    "files": 5942,
+    "bytes": 45516328,
+    "chars": 45491590,
+    "tokens": 5989681,
+    "astNodes": 2450338,
+    "tokensPerByte": 0.13159411717043606,
+    "bytesPerToken": 7.599123893242394,
+    "nodesPerToken": 0.4090932388552913
+  },
+  "bytesPerTokenPercentiles": {
+    "p5": 4.111111111111111,
+    "p10": 4.621162712245586,
+    "p25": 5.677248677248677,
+    "p50": 7.081081081081081,
+    "p75": 9.102564102564102,
+    "p90": 12.825242718446601,
+    "p95": 18
+  },
+  "byClass": {
+    "js": {
+      "files": 2764,
+      "bytes": 15314814,
+      "tokens": 1951401,
+      "nodes": 807288
+    },
+    "ts": {
+      "files": 3178,
+      "bytes": 30201514,
+      "tokens": 4038280,
+      "nodes": 1643050
+    },
+    "dts": {
+      "files": 0,
+      "bytes": 0,
+      "tokens": 0,
+      "nodes": 0
+    },
+    "minified": {
+      "files": 0,
+      "bytes": 0,
+      "tokens": 0,
+      "nodes": 0
+    }
+  },
+  "categories": {
+    "identifier": {
+      "count": 1775372,
+      "chars": 16906734
+    },
+    "keyword": {
+      "count": 621680,
+      "chars": 3012221
+    },
+    "punctuation": {
+      "count": 3313432,
+      "chars": 3505100
+    },
+    "string": {
+      "count": 181132,
+      "chars": 3222144
+    },
+    "template": {
+      "count": 30363,
+      "chars": 934961
+    },
+    "number": {
+      "count": 60157,
+      "chars": 113164
+    },
+    "regex": {
+      "count": 1959,
+      "chars": 43905
+    },
+    "jsxText": {
+      "count": 5586,
+      "chars": 221147
+    },
+    "other": {
+      "count": 0,
+      "chars": 0
+    }
+  },
+  "trivia": {
+    "comments": {
+      "count": 70637,
+      "chars": 5356960
+    },
+    "whitespaceChars": 12175254
+  },
+  "kinds": {
+    "Identifier": 1773987,
+    ",": 428652,
+    "(": 411516,
+    ")": 411510,
+    ".": 373736,
+    ";": 329917,
+    ":": 286347,
+    "{": 219117,
+    "}": 217828,
+    "StringLiteral": 181132,
+    "=": 144667,
+    "const": 78165,
+    "if": 65961,
+    "[": 64379,
+    "]": 64377,
+    "return": 61808,
+    "NumericLiteral": 60073,
+    "|": 48068,
+    "<": 43684,
+    ">": 42778,
+    "function": 33381,
+    "===": 33246,
+    "this": 32964,
+    "?": 30675,
+    "=>": 25970,
+    "&&": 25523,
+    "string": 25344,
+    "!": 24720,
+    "null": 24082,
+    "export": 22790,
+    "case": 19380,
+    "from": 18284,
+    "import": 16817,
+    "||": 16522,
+    "as": 15840,
+    "true": 15753,
+    "false": 14944,
+    "let": 13022,
+    "number": 12443,
+    "else": 12273,
+    "!==": 12006,
+    "boolean": 11835,
+    "+": 11766,
+    "undefined": 10922,
+    "type": 10789,
+    "TemplateTail": 10087,
+    "TemplateHead": 10087,
+    "new": 9655,
+    "void": 9284,
+    "for": 6563,
+    "&": 6463,
+    "extends": 6361,
+    "any": 6271,
+    "readonly": 6192,
+    "...": 5746,
+    "-": 5721,
+    "JsxText": 5586,
+    "typeof": 5514,
+    "break": 5423,
+    "NoSubstitutionTemplateLiteral": 5144,
+    "TemplateMiddle": 5045,
+    "*": 3969,
+    "of": 3952,
+    "var": 3883,
+    "interface": 3740,
+    "++": 3543,
+    "?.": 3449,
+    "throw": 3439,
+    "/": 2888,
+    "default": 2749,
+    "+=": 2465,
+    "switch": 2430,
+    "declare": 2419,
+    "await": 2345,
+    "??": 2031,
+    "is": 2009,
+    "RegularExpressionLiteral": 1959,
+    "!=": 1855,
+    "==": 1800,
+    "while": 1748,
+    "continue": 1594,
+    "unknown": 1561,
+    "class": 1496,
+    "PrivateIdentifier": 1385,
+    ">=": 1312,
+    "try": 1263,
+    "in": 1193,
+    "async": 1175,
+    "public": 1140,
+    "private": 1089,
+    "catch": 1079,
+    "never": 1071,
+    "<<": 979,
+    "|=": 939,
+    "object": 885,
+    "<=": 793,
+    "constructor": 725,
+    "static": 677,
+    "instanceof": 652,
+    "yield": 631,
+    "super": 617,
+    "--": 595,
+    "keyof": 542,
+    "??=": 469,
+    "get": 441,
+    "enum": 377,
+    "protected": 360,
+    "asserts": 335,
+    "~": 316,
+    "delete": 282,
+    "bigint": 260,
+    "symbol": 253,
+    "finally": 245,
+    "do": 197,
+    "||=": 191,
+    "override": 173,
+    "&=": 164,
+    "-=": 149,
+    "%": 148,
+    ">>": 144,
+    ">>>": 111,
+    "infer": 106,
+    "satisfies": 88,
+    "BigIntLiteral": 84,
+    "module": 78,
+    "implements": 71,
+    "abstract": 65,
+    "@": 65,
+    "namespace": 54,
+    "set": 41,
+    "**": 40,
+    "with": 34,
+    "*=": 27,
+    "out": 21,
+    "accessor": 17,
+    "unique": 15,
+    "^=": 15,
+    "^": 14,
+    "&&=": 8,
+    ">>>=": 7,
+    "<<=": 5,
+    "/=": 4,
+    "debugger": 2,
+    ">>=": 2,
+    "%=": 1,
+    "using": 1
+  }
+}
