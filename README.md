@@ -6,7 +6,9 @@ language and parser. Everything after this sentence is AI-generated.
 A tool to see some facts about token density: it measures **tokens per byte**
 of real-world JavaScript/TypeScript, as a proxy corpus for sizing
 scanner/parser SoA vec capacities (`capacity ≈ source_bytes / bytes_per_token`)
-in a new language without a corpus of its own.
+in a new language without a corpus of its own. It reports the same per-file
+percentile distribution for **comment** and **whitespace** trivia, so the side
+vecs that hold them can be sized off input length the same way.
 
 "Per byte" means per byte of raw input — file size on disk, including
 whitespace, comments, and everything else the scanner skips — so the ratios
@@ -37,6 +39,14 @@ node src/cli.js --repos --top 100 --out reports/top-100-repos.md
 
 # Re-run analysis on an already-downloaded corpus (no network):
 node src/cli.js --skip-install --include-dts
+```
+
+With [Nix](https://nixos.org), the flake provides Node and a runnable app —
+no `npm install` needed for the CLI:
+
+```sh
+nix run . -- --top 50 --out reports/top-50.md   # run the tool
+nix develop                                      # dev shell with node + npm
 ```
 
 Options:
@@ -81,6 +91,13 @@ Sample reports are checked in at [`reports/top-25.md`](reports/top-25.md),
   running the scanner directly) keeps context-sensitive tokens correct: regex
   vs. division, template literals, JSX. The parse tree also yields an
   **AST nodes per token** ratio, useful for sizing parser-side vecs.
+- **Trivia** — comments and whitespace are read from the gaps the parser leaves
+  between token leaves, so they inherit the parse's correct token boundaries
+  (a standalone scanner mis-reads template-literal types as strings and
+  swallows the trivia inside them). A comment piece is one line (a K-line block
+  comment counts as K, matching a line-comment lexer); a whitespace piece is one
+  contiguous run of spaces/tabs/newlines, which a comment splits. The report
+  gives per-file bytes-per-piece percentiles for both, for sizing trivia vecs.
 - **Buckets** — minified files (`.min.` in the name, or very long average
   lines) and `.d.ts` declarations have very different density from
   hand-written code, so they're excluded from the headline numbers by default

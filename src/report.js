@@ -12,12 +12,13 @@ export function newAggregate() {
     nodes: 0,
     tokenChars: 0,
     comments: { count: 0, chars: 0 },
+    whitespace: { count: 0, chars: 0 },
     byClass: Object.fromEntries(
       FILE_CLASSES.map((c) => [c, { files: 0, bytes: 0, tokens: 0, nodes: 0 }]),
     ),
     categories: Object.fromEntries(CATEGORIES.map((c) => [c, { count: 0, chars: 0 }])),
     kinds: new Map(),
-    perFile: [], // [bytes, tokens] per file, for the distribution
+    perFile: [], // [bytes, tokens, comments, whitespaceRuns] per file, for the distributions
   };
 }
 
@@ -30,6 +31,8 @@ export function addFile(agg, file, result) {
   agg.tokenChars += result.tokenChars;
   agg.comments.count += result.comments.count;
   agg.comments.chars += result.comments.chars;
+  agg.whitespace.count += result.whitespace.count;
+  agg.whitespace.chars += result.whitespace.chars;
 
   const cls = agg.byClass[file.class];
   cls.files += 1;
@@ -44,13 +47,34 @@ export function addFile(agg, file, result) {
   for (const [kind, count] of result.kinds) {
     agg.kinds.set(kind, (agg.kinds.get(kind) ?? 0) + count);
   }
-  if (result.tokens > 0) agg.perFile.push([file.bytes, result.tokens]);
+  if (result.tokens > 0) {
+    agg.perFile.push([file.bytes, result.tokens, result.comments.count, result.whitespace.count]);
+  }
 }
 
 function percentile(sorted, p) {
   if (sorted.length === 0) return NaN;
   const idx = Math.min(sorted.length - 1, Math.floor((p / 100) * sorted.length));
   return sorted[idx];
+}
+
+// Sorted ascending list of bytes-per-piece for a perFile column (1=tokens,
+// 2=comments, 3=whitespace runs), skipping files with none of that piece so
+// the ratio is defined. The low percentiles are the dense files that bind vec
+// capacity: `capacity = bytes / N` reallocates on a file only when N exceeds
+// that file's bytes-per-piece.
+function perFileRatios(perFile, idx) {
+  const out = [];
+  for (const row of perFile) {
+    if (row[idx] > 0) out.push(row[0] / row[idx]);
+  }
+  return out.sort((a, b) => a - b);
+}
+
+const DIST_PERCENTILES = [5, 10, 25, 50, 75, 90, 95];
+
+function percentileObject(sorted) {
+  return Object.fromEntries(DIST_PERCENTILES.map((p) => [`p${p}`, percentile(sorted, p)]));
 }
 
 const num = (n) => n.toLocaleString('en-US');
@@ -67,9 +91,19 @@ function table(rows) {
     .join('\n');
 }
 
+// A p10..p90 row for a sorted bytes-per-piece distribution.
+function distributionTable(sorted) {
+  return table([
+    ['p10', 'p25', 'p50 (median)', 'p75', 'p90'],
+    [10, 25, 50, 75, 90].map((p) => fix(percentile(sorted, p))),
+  ]);
+}
+
 export function renderMarkdown(agg, meta) {
   const stats = meta.scanStats;
-  const bytesPerToken = agg.perFile.map(([b, t]) => b / t).sort((a, b) => a - b);
+  const bytesPerToken = perFileRatios(agg.perFile, 1);
+  const bytesPerComment = perFileRatios(agg.perFile, 2);
+  const bytesPerWhitespace = perFileRatios(agg.perFile, 3);
   const lines = [];
 
   const repoMode = meta.mode === 'repos';
@@ -111,12 +145,7 @@ export function renderMarkdown(agg, meta) {
   lines.push('');
   lines.push('Per-file distribution of bytes per token:');
   lines.push('');
-  lines.push(
-    table([
-      ['p10', 'p25', 'p50 (median)', 'p75', 'p90'],
-      [10, 25, 50, 75, 90].map((p) => fix(percentile(bytesPerToken, p))),
-    ].map((r, i) => (i === 0 ? r : r))),
-  );
+  lines.push(distributionTable(bytesPerToken));
   lines.push('');
   lines.push('### Sizing guidance');
   lines.push('');
@@ -131,6 +160,43 @@ export function renderMarkdown(agg, meta) {
   lines.push(
     `- For parser SoA vecs, multiply token capacity by ~${fix(agg.nodes / agg.tokens)} ` +
       '(AST nodes per token), adjusted for how granular your AST is relative to TypeScript’s.',
+  );
+  lines.push('');
+
+  lines.push('## Trivia distribution');
+  lines.push('');
+  lines.push('Per-file bytes per trivia piece, for sizing comment / whitespace SoA vecs from');
+  lines.push('input length the same way as the token vec (`capacity = bytes / N`; pick a low');
+  lines.push('percentile to over-provision the dense files). A comment piece is one line of a');
+  lines.push('comment (a K-line block comment counts as K); a whitespace piece is one');
+  lines.push('contiguous run of spaces/tabs/newlines, which a comment splits.');
+  lines.push('');
+  const commentFiles = bytesPerComment.length;
+  lines.push(
+    `Comments — present in ${num(commentFiles)} of ${num(agg.perFile.length)} files ` +
+      `(${pct(commentFiles, agg.perFile.length)}); bytes per comment line:`,
+  );
+  lines.push('');
+  lines.push(distributionTable(bytesPerComment));
+  lines.push('');
+  lines.push('Whitespace — bytes per contiguous run:');
+  lines.push('');
+  lines.push(distributionTable(bytesPerWhitespace));
+  lines.push('');
+  lines.push('### Sizing guidance');
+  lines.push('');
+  lines.push(
+    `- Comment vec: \`N = ${fix(percentile(bytesPerComment, 10))}\` (p10) over-provisions ` +
+      '~90% of comment-bearing files. Files with no comments still reserve `bytes / N` and ' +
+      'leave it empty — size from token count instead if that waste matters.',
+  );
+  lines.push(
+    `- Whitespace vec: \`N = ${fix(percentile(bytesPerWhitespace, 10))}\` (p10) over-provisions ` +
+      '~90% of files; whitespace is in nearly every file, so input-length sizing is safe.',
+  );
+  lines.push(
+    `- Aggregate means: \`N = ${fix(agg.bytes / agg.comments.count)}\` bytes/comment-line, ` +
+      `\`N = ${fix(agg.bytes / agg.whitespace.count)}\` bytes/whitespace-run.`,
   );
   lines.push('');
 
@@ -174,7 +240,6 @@ export function renderMarkdown(agg, meta) {
     if (c.count === 0) continue;
     catRows.push([cat, num(c.count), pct(c.count, agg.tokens), num(c.chars), pct(c.chars, agg.chars)]);
   }
-  const trivia = agg.chars - agg.tokenChars;
   catRows.push([
     '*(trivia: comments)*',
     num(agg.comments.count),
@@ -184,10 +249,10 @@ export function renderMarkdown(agg, meta) {
   ]);
   catRows.push([
     '*(trivia: whitespace)*',
+    num(agg.whitespace.count),
     '–',
-    '–',
-    num(trivia - agg.comments.chars),
-    pct(trivia - agg.comments.chars, agg.chars),
+    num(agg.whitespace.chars),
+    pct(agg.whitespace.chars, agg.chars),
   ]);
   lines.push(table(catRows));
   lines.push('');
@@ -232,7 +297,9 @@ export function renderMarkdown(agg, meta) {
 }
 
 export function toJson(agg, meta) {
-  const bytesPerToken = agg.perFile.map(([b, t]) => b / t).sort((a, b) => a - b);
+  const bytesPerToken = perFileRatios(agg.perFile, 1);
+  const bytesPerComment = perFileRatios(agg.perFile, 2);
+  const bytesPerWhitespace = perFileRatios(agg.perFile, 3);
   return {
     meta,
     totals: {
@@ -245,14 +312,19 @@ export function toJson(agg, meta) {
       bytesPerToken: agg.bytes / agg.tokens,
       nodesPerToken: agg.nodes / agg.tokens,
     },
-    bytesPerTokenPercentiles: Object.fromEntries(
-      [5, 10, 25, 50, 75, 90, 95].map((p) => [`p${p}`, percentile(bytesPerToken, p)]),
-    ),
+    bytesPerTokenPercentiles: percentileObject(bytesPerToken),
     byClass: agg.byClass,
     categories: agg.categories,
     trivia: {
-      comments: agg.comments,
-      whitespaceChars: agg.chars - agg.tokenChars - agg.comments.chars,
+      comments: {
+        ...agg.comments,
+        filesWithComments: bytesPerComment.length,
+        bytesPerCommentPercentiles: percentileObject(bytesPerComment),
+      },
+      whitespace: {
+        ...agg.whitespace,
+        bytesPerRunPercentiles: percentileObject(bytesPerWhitespace),
+      },
     },
     kinds: Object.fromEntries(
       [...agg.kinds.entries()]

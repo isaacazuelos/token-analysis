@@ -67,9 +67,11 @@ export function kindName(kind) {
 
 /**
  * Returns token statistics for one file:
- * `{ tokens, nodes, chars, categories, kinds, comments }` where `categories`
- * maps category name to `{ count, chars }`, `kinds` maps SyntaxKind to count,
- * and `chars` are UTF-16 code units (≈ bytes for the mostly-ASCII corpus).
+ * `{ tokens, nodes, chars, categories, kinds, comments, whitespace }` where
+ * `categories` maps category name to `{ count, chars }`, `kinds` maps
+ * SyntaxKind to count, `comments`/`whitespace` are `{ count, chars }` trivia
+ * tallies, and `chars` are UTF-16 code units (≈ bytes for the mostly-ASCII
+ * corpus).
  */
 export function tokenizeFile(filePath, text) {
   const scriptKind = scriptKindFor(filePath);
@@ -86,18 +88,27 @@ export function tokenizeFile(filePath, text) {
   let tokens = 0;
   let nodes = 0;
   let tokenChars = 0;
+  const comments = { count: 0, chars: 0 };
+  const whitespace = { count: 0, chars: 0 };
 
   const stack = [sourceFile];
   while (stack.length > 0) {
     const node = stack.pop();
     const kind = node.kind;
-    if (kind === S.EndOfFileToken) continue;
     // JSDoc subtrees re-parse comment text into pseudo-tokens; the whole
-    // comment is already accounted for as trivia.
+    // comment is already counted as trivia of the host token, so skip them
+    // without descending into their children.
     if (kind >= S.FirstJSDocNode && kind <= S.LastJSDocNode) continue;
 
     if (kind < S.FirstNode) {
-      // A token leaf.
+      // A token leaf (including the end-of-file token). Its leading trivia is
+      // the gap the parser already separated from real code, so it is pure
+      // whitespace and comments — classify it here. We deliberately do not run
+      // a standalone scanner over the file: without parser context it mis-reads
+      // template-literal types and regex-vs-division and swallows trivia into
+      // bogus string tokens (badly, on files like lib.dom.d.ts).
+      addLeadingTrivia(text, node.getFullStart(), node.getStart(sourceFile), comments, whitespace);
+      if (kind === S.EndOfFileToken) continue; // trailing trivia only, not a token
       tokens += 1;
       const width = node.end - node.getStart(sourceFile);
       tokenChars += width;
@@ -118,28 +129,70 @@ export function tokenizeFile(filePath, text) {
     tokenChars,
     categories,
     kinds,
-    comments: countComments(text, scriptKind),
+    comments,
+    whitespace,
   };
 }
 
-// Comments and whitespace are trivia and never show up as CST tokens, so we
-// make a second, scanner-only pass to measure them. The scanner's
-// regex-vs-division ambiguity can very occasionally misread a comment inside
-// what is really a regex literal; the error is negligible at corpus scale.
-function countComments(text, scriptKind) {
-  const variant =
-    scriptKind === ts.ScriptKind.TSX || scriptKind === ts.ScriptKind.JSX
-      ? ts.LanguageVariant.JSX
-      : ts.LanguageVariant.Standard;
-  const scanner = ts.createScanner(ts.ScriptTarget.Latest, /* skipTrivia */ false, variant, text);
-  let count = 0;
-  let chars = 0;
-  let kind;
-  while ((kind = scanner.scan()) !== S.EndOfFileToken) {
-    if (kind === S.SingleLineCommentTrivia || kind === S.MultiLineCommentTrivia) {
-      count += 1;
-      chars += scanner.getTokenText().length;
+const SLASH = 47; // /
+const STAR = 42; // *
+const LF = 10; // \n
+const CR = 13; // \r
+
+// Classify the leading-trivia span `[fullStart, start)` of a token. Because the
+// parser has already separated this span from real code, it contains only
+// whitespace and comments, and every `/` in it begins a comment — so we can
+// walk it directly rather than re-scanning the file (a standalone scanner lacks
+// parser context and the TS comment-range helpers mis-handle same-line "//"
+// comments). Counting granularity matches the trivia model of the target parser
+// this corpus sizes vecs for: a *comment piece* is one line (a K-line block
+// comment counts as K, like K line comments), and a *whitespace piece* is one
+// maximal contiguous run of spaces/tabs/newlines, which a comment splits.
+// `count` is pieces; `chars` is UTF-16 code units.
+function addLeadingTrivia(text, fullStart, start, comments, whitespace) {
+  let i = fullStart;
+  let runStart = -1; // start of the current whitespace run, or -1 if not in one
+  const flushRun = (end) => {
+    if (runStart >= 0) {
+      whitespace.count += 1;
+      whitespace.chars += end - runStart;
+      runStart = -1;
     }
+  };
+
+  while (i < start) {
+    if (text.charCodeAt(i) === SLASH && i + 1 < start) {
+      const next = text.charCodeAt(i + 1);
+      if (next === SLASH) {
+        flushRun(i);
+        let j = i + 2;
+        while (j < start && text.charCodeAt(j) !== LF && text.charCodeAt(j) !== CR) j += 1;
+        comments.count += 1; // a line comment is one line
+        comments.chars += j - i;
+        i = j;
+        continue;
+      }
+      if (next === STAR) {
+        flushRun(i);
+        let j = i + 2;
+        let lines = 1;
+        while (j < start) {
+          const c = text.charCodeAt(j);
+          if (c === STAR && j + 1 < start && text.charCodeAt(j + 1) === SLASH) {
+            j += 2;
+            break;
+          }
+          if (c === LF) lines += 1;
+          j += 1;
+        }
+        comments.count += lines; // one comment piece per line of the block
+        comments.chars += j - i;
+        i = j;
+        continue;
+      }
+    }
+    if (runStart < 0) runStart = i; // whitespace char extends/starts a run
+    i += 1;
   }
-  return { count, chars };
+  flushRun(start);
 }
